@@ -1,0 +1,79 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile information",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "phone": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "role": { "type": "string", "enum": ["customer", "consultant", "agent", "admin"] },
+        "locale": { "type": "string", "enum": ["fa", "en"] },
+        "kycLevel": { "type": "integer" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "lastSeenAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email"]
+    },
+    "Application": {
+      "title": "Application",
+      "description": "Company registration application",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "service": { "type": "string" },
+        "status": { "type": "string", "enum": ["draft", "submitted", "in_review", "approved", "cr_issued", "rejected"] },
+        "structure": { "type": "string", "enum": ["LLC", "SPC", "BRANCH", "REP_OFFICE"] },
+        "jurisdiction": { "type": "object" },
+        "activities": { "type": "array", "items": { "type": "string" } },
+        "tradeName": { "type": "object" },
+        "shareholders": { "type": "array" },
+        "capital": { "type": "number" },
+        "documents": { "type": "array" },
+        "moaDraft": { "type": "string" },
+        "approvals": { "type": "array" },
+        "timeline": { "type": "array" },
+        "assignedConsultantId": { "type": "string" },
+        "totals": { "type": "object" },
+        "paymentStatus": { "type": "string" },
+        "stripePaymentIntentId": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "status", "service"]
+    },
+    "Message": {
+      "title": "Message",
+      "description": "Chat message",
+      "type": "object",
+      "properties": {
+        "senderId": { "type": "string" },
+        "text": { "type": "string" },
+        "attachments": { "type": "array" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "readBy": { "type": "array" }
+      }
+    }
+  },
+  "firestore": {
+    "users/{userId}": {
+      "schema": "User",
+      "description": "User profiles"
+    },
+    "applications/{appId}": {
+      "schema": "Application",
+      "description": "Main service applications"
+    },
+    "chats/{chatId}": {
+      "schema": { "type": "object" },
+      "description": "Chat sessions"
+    },
+    "chats/{chatId}/messages/{messageId}": {
+      "schema": "Message",
+      "description": "Messages within a chat"
+    }
+  }
+}
