@@ -52,7 +52,7 @@ const Dashboard = () => {
 
 export default function App() {
   const { user, setUser } = useAuthStore();
-  const { t, isRtl, toggleLanguage, currentLang } = useTranslation();
+  const { t } = useTranslation();
   const [showWizard, setShowWizard] = useState(false);
   const [showDashboard, setShowDashboard] = useState(false);
   const [showAuth, setShowAuth] = useState(false);
@@ -68,7 +68,7 @@ export default function App() {
 
   if (showWizard) {
     return (
-      <div className={`min-h-screen bg-slate-50 ${isRtl ? 'rtl fa' : 'ltr en'}`}>
+      <div className="min-h-screen bg-slate-50 rtl fa">
         <header className="glass-nav h-16 flex items-center px-4 sm:px-8 sticky top-0 z-50">
           <div className="max-w-7xl mx-auto w-full flex items-center justify-between">
             <div
@@ -82,16 +82,8 @@ export default function App() {
               </div>
               <div className="flex flex-col">
                 <span className="text-white font-bold text-xl leading-none">{t('brand')}</span>
-                <span className="text-[#D4A574] text-[10px] font-medium tracking-widest uppercase">بوابة عمان</span>
+                <span className="text-[#D4A574] text-[10px] font-medium tracking-wide">{t('brand_tagline')}</span>
               </div>
-            </div>
-            <div className="flex items-center gap-4">
-              <button
-                onClick={toggleLanguage}
-                className="text-xs font-bold text-white/80 uppercase bg-white/10 px-4 py-1.5 rounded-full hover:bg-white/20 transition-colors border border-white/20 backdrop-blur-sm"
-              >
-                {currentLang === 'en' ? 'FA' : 'EN'}
-              </button>
             </div>
           </div>
         </header>
@@ -107,7 +99,7 @@ export default function App() {
   }
 
   return (
-    <div className={`min-h-screen flex flex-col ${isRtl ? 'rtl fa' : 'ltr en'}`}>
+    <div className="min-h-screen flex flex-col rtl fa">
       <header className="glass-nav h-20 sticky top-0 z-50 flex items-center">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 w-full flex items-center justify-between">
           <div className="flex items-center gap-3 cursor-pointer" onClick={() => setShowDashboard(false)}>
@@ -118,7 +110,9 @@ export default function App() {
             </div>
             <div className="flex flex-col">
               <span className="text-xl font-bold text-white leading-none">{t('brand')}</span>
-              <span className="text-[#D4A574] text-[10px] font-medium tracking-widest">{t('oman_services')}</span>
+              <span className="text-[#D4A574] text-[10px] font-medium tracking-wide leading-snug max-w-[14rem]">
+                {t('brand_tagline')}
+              </span>
             </div>
           </div>
 
@@ -136,12 +130,6 @@ export default function App() {
           </nav>
 
           <div className="flex items-center gap-4">
-            <button
-              onClick={toggleLanguage}
-              className="px-4 py-1.5 bg-white/10 rounded-full text-xs font-bold text-white border border-white/20 hover:bg-white/20 transition-colors uppercase backdrop-blur-sm"
-            >
-              {currentLang === 'en' ? 'FA' : 'EN'}
-            </button>
             {user ? (
               <div className="flex items-center gap-4 ps-4 border-s border-white/10">
                 <div className="w-10 h-10 rounded-full bg-[#D4A574] flex items-center justify-center border-2 border-white/20 shadow-lg">
@@ -167,7 +155,7 @@ export default function App() {
         ) : (
           <section className="relative pt-20 pb-32 overflow-hidden bg-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-              <div className={`max-w-2xl ${isRtl ? 'mr-auto text-right' : 'ml-auto text-left'}`}>
+              <div className="max-w-2xl mr-auto text-right">
                 <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-slate-900 leading-[1.3]">
                   {t('hero_title')}
                 </h1>
@@ -241,7 +229,9 @@ export default function App() {
           <div className="flex flex-col md:flex-row justify-between items-start gap-8">
             <div className="max-w-xs">
               <span className="text-2xl font-bold flex items-center gap-2">
-                <div className="w-8 h-8 bg-[#1B5E3F] rounded-lg flex items-center justify-center text-white text-sm">ع</div>
+                <div className="w-8 h-8 bg-[#1B5E3F] rounded-lg flex items-center justify-center text-white text-xs font-bold">
+                  TB
+                </div>
                 {t('brand')}
               </span>
               <p className="mt-4 text-slate-400 text-sm leading-relaxed">

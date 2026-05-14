@@ -190,9 +190,9 @@ const RegistrationWizard = () => {
                     />
                   </div>
                   <div>
-                    <Label className="text-xs font-bold text-slate-400">نام انگلیسی {i + 1}</Label>
+                    <Label className="text-xs font-bold text-slate-400">نام لاتین {i + 1}</Label>
                     <Input
-                      placeholder="English Name"
+                      placeholder="نام به لاتین"
                       className="mt-1 ltr"
                       value={data.tradeNames[i]?.en || ''}
                       onChange={(e) => {
@@ -231,7 +231,7 @@ const RegistrationWizard = () => {
               <div className="space-y-4">
                 <div className="flex justify-between items-center">
                   <Label className="font-bold">سهامداران</Label>
-                  <Button variant="outline" size="sm" onClick={() => updateData({ shareholders: [...data.shareholders, { name: '', nationality: 'Oman', passportNumber: '', equity: 0 }] })}>+ افزودن</Button>
+                  <Button variant="outline" size="sm" onClick={() => updateData({ shareholders: [...data.shareholders, { name: '', nationality: 'عمان', passportNumber: '', equity: 0 }] })}>+ افزودن</Button>
                 </div>
                 {data.shareholders.map((sh, i) => (
                   <Card key={i} className="p-4 border-slate-100 shadow-sm rounded-2xl">
@@ -358,12 +358,12 @@ const RegistrationWizard = () => {
               </div>
               <div className="space-y-1">
                 <Label className="text-slate-400">سرمایه</Label>
-                <p className="font-bold text-lg ltr">{data.capital.toLocaleString()} OMR</p>
+                <p className="font-bold text-lg">{data.capital.toLocaleString('fa-IR')} ریال عمان</p>
               </div>
             </div>
             <div className="flex justify-between items-center py-4 text-xl font-bold">
               <span>جمع کل هزینه‌ها</span>
-              <span className="text-[#1B5E3F] text-2xl ltr">OMR 450.000</span>
+              <span className="text-[#1B5E3F] text-2xl">۴۵۰٫۰۰۰ ریال عمان</span>
             </div>
           </div>
         );
@@ -372,17 +372,17 @@ const RegistrationWizard = () => {
           <div className="space-y-8 text-center">
             <CardHeader className="px-0">
               <CardTitle className="text-2xl font-bold">مرحله نهایی: پرداخت امن</CardTitle>
-              <CardDescription>هزینه‌های دولتی و خدماتی را از طریق Thawani/OmanNet پرداخت کنید.</CardDescription>
+              <CardDescription>هزینه‌های دولتی و خدماتی را از طریق درگاه پرداخت امن (ثانی، عمان‌نت یا استرایپ) پرداخت کنید.</CardDescription>
             </CardHeader>
             <div className="max-w-sm mx-auto p-8 border-2 border-slate-100 rounded-[2.5rem] space-y-6">
               <div className="w-16 h-16 bg-[#1B5E3F]/10 text-[#1B5E3F] rounded-full flex items-center justify-center mx-auto">
                 <CreditCard size={32} />
               </div>
               <div className="space-y-2">
-                <p className="text-3xl font-bold ltr">450.000 <span className="text-sm font-medium text-slate-400">OMR</span></p>
+                <p className="text-3xl font-bold">۴۵۰٫۰۰۰ <span className="text-sm font-medium text-slate-400">ریال عمان</span></p>
                 <p className="text-slate-500 text-sm">شامل ۵٪ مالیات بر ارزش افزوده</p>
               </div>
-              <Button className="w-full h-14 rounded-2xl bg-[#1B5E3F] text-lg font-bold">پرداخت با استرایپ</Button>
+              <Button className="w-full h-14 rounded-2xl bg-[#1B5E3F] text-lg font-bold">پرداخت آنلاین</Button>
               <div className="flex items-center justify-center gap-4 grayscale opacity-50">
                 <div className="h-6 w-12 bg-slate-200 rounded"></div>
                 <div className="h-6 w-12 bg-slate-200 rounded"></div>

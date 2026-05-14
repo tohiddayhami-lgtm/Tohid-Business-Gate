@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { MessageCircle, Send, X, User } from 'lucide-react';
 import { useAuthStore } from '@/src/store/useAuthStore';
+import { useTranslation } from '@/src/hooks/useLocale';
 
 interface Message {
   id: string;
@@ -19,6 +20,7 @@ const LiveChat = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputText, setInputText] = useState('');
   const { user } = useAuthStore();
+  const { t } = useTranslation();
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -78,8 +80,8 @@ const LiveChat = () => {
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center"><User size={20} /></div>
               <div>
-                <CardTitle className="text-sm font-bold">پشتیبانی عمان‌گیت</CardTitle>
-                <p className="text-[10px] opacity-70 tracking-widest font-bold">آنلاین</p>
+                <CardTitle className="text-sm font-bold">{t('chat_title', { brand: t('brand') })}</CardTitle>
+                <p className="text-[10px] opacity-70 tracking-widest font-bold">{t('chat_online')}</p>
               </div>
             </div>
             <button onClick={() => setIsOpen(false)} className="hover:rotate-90 transition-transform"><X size={20} /></button>
@@ -87,7 +89,7 @@ const LiveChat = () => {
           <CardContent className="flex-grow overflow-y-auto p-4 space-y-4" ref={scrollRef}>
             {messages.length === 0 && (
               <div className="text-center py-10">
-                <p className="text-xs text-slate-400 font-medium">با متخصصان ما گفتگو کنید.</p>
+                <p className="text-xs text-slate-400 font-medium">{t('chat_empty')}</p>
               </div>
             )}
             {messages.map((m) => (
@@ -101,7 +103,7 @@ const LiveChat = () => {
           <form className="p-4 bg-slate-50 border-t flex gap-2" onSubmit={sendMessage}>
             <Button type="submit" size="icon" className="rounded-xl bg-[#1B5E3F] shrink-0"><Send size={18} /></Button>
             <Input
-              placeholder="پیام خود را بنویسید..."
+              placeholder={t('chat_placeholder')}
               className="rounded-xl border-slate-200"
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}

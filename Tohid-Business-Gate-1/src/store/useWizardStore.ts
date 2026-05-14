@@ -45,7 +45,7 @@ export const useWizardStore = create<WizardState>()(
       reset: () => set({ data: initialData }),
     }),
     {
-      name: ' OmanGate_wizard_storage',
+      name: 'TohidBusinessGate_wizard_storage',
     }
   )
 );

@@ -24,7 +24,10 @@ async function startServer() {
       const { description } = req.body;
       const response = await ai.models.generateContent({
         model: "gemini-3-flash-preview",
-        contents: `Given this business description: "${description}", suggest 3 relevant Oman business activity codes and labels from a general list like "General Trading", "IT Consulting", "Tourism", etc. Return valid JSON only.`,
+        contents: `با توجه به این توضیح کسب‌وکار (به هر زبانی که کاربر نوشته): """${description}""" — سه فعالیت تجاری مرتبط با ثبت شرکت در عمان پیشنهاد بده. برای هر مورد:
+- فیلد code: یک کد کوتاه لاتین (مثل RET-001 یا IT-02)
+- فیلد label: توضیح کوتاه فقط به زبان فارسی
+فقط یک آرایه JSON معتبر برگردان، بدون متن اضافه.`,
         config: {
           responseMimeType: "application/json",
           responseSchema: {
@@ -42,7 +45,7 @@ async function startServer() {
       res.json(JSON.parse(response.text || "[]"));
     } catch (error) {
       console.error("Gemini Error:", error);
-      res.status(500).json({ error: "Failed to get suggestions" });
+      res.status(500).json({ error: "خطا در دریافت پیشنهادها از سرویس هوش مصنوعی" });
     }
   });
 
